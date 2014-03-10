@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="../style.css">
 <!--[if IE]>
-      	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  	<![endif]-->
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
 </head>
@@ -31,7 +31,7 @@
         
         echo "<h3>Images</h3>";
         echo "<ol><li>I recommend resizing images before uploading them. They don't need to be more than 1000 pixels on the long side, and anything larger makes the files and printing both slower.</li>";
-        echo "<li><b>If you want to have images at specific parts of the documenting</b>, mark these locations with the numbers 1 through 5 in double percent signs (<code>%%1%%</code> for image #1, <code>%%2%%</code> for #2, etc.) and they will be embedded at this point in the text.</li>";
+        echo "<li><p><b>If you want to have images at specific parts of the documenting</b>, mark these locations with the image numbers in double percent signs (<code>%%1%%</code> for image #1, <code>%%2%%</code> for #2, etc.) and they will be embedded at this point in the text.</p><p>The images with no location marker will be included at the end of the post.</p></li>";
         echo "</ol>";
     }
     ?>
