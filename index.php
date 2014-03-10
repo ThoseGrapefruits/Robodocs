@@ -10,11 +10,65 @@
   	<![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+    function validateForm()
+    {
+        if (validateName() && validateDate() && validateDocumentation() && validateTeam() /*TODO*/ )
+        {
+            return true;    
+        }
+        else
+        {
+            alert("Please fill in all required forms fully.")
+            return false;
+        }
+    }
+    
+    function validateDate()
+    {
+        var date=document.forms["Form"]["date"].value;
+        if (date == null || date == "")
+        {
+            return false;
+        }
+        return true;
+    }
+
+    function validateName()
+    {
+        var name=document.forms["Form"]["name"].value;
+        if (name == null || name == "")
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    function validateDocumentation()
+    {
+        var documentation=document.forms["Form"]["documentation"].value;
+        if (documentation == null || documentation == "")
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    function validateTeam()
+    {
+        var teamnumber=document.forms["Form"]["teamnumber"].value;
+        if (teamnumber == null || teamnumber == "")
+        {
+            return false;
+        }
+        return true;
+    }
+</script>
 </head>
 <body class="php">
 <div id="container">
-	<div id="main" role="main" class="hellobox">
-		<h1><?php echo 'Robotics Documentation'; ?></h1>
+	<div id="main" role="main" class="hellobox roboticsbox">
+		<h1>Robotics Documentation</h1>
 	</div>
 	<nav>
 	<ul>
@@ -24,7 +78,7 @@
 	</nav>
 	
 	<div style="margin-left:auto;margin-right:auto;width:660px">
-		<form method="post" action="process.php">
+		<form method="post" name="Form" action="process.php" onsubmit="return validateForm()">
 		    <br>
 		    <h3>Information</h3>
 		    <table>
@@ -48,7 +102,11 @@
             <textarea name="documentation" maxlength="10000" rows="16" cols="100"></textarea>
             <br>
             <h3>Upload Images</h3>
-            <input type="file" accept="image/*"><br>
+            <input type="file" name="file1" accept="image/*"><br>
+            <input type="file" name="file2" accept="image/*"><br>
+            <input type="file" name="file3" accept="image/*"><br>
+            <input type="file" name="file4" accept="image/*"><br>
+            <input type="file" name="file5" accept="image/*"><br>
             <br>
             <h3>Captcha</h3>
             <?php

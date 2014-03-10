@@ -13,7 +13,7 @@
 </head>
 <body class="php">
 <div id="container">
-	<div id="main" role="main" class="hellobox">
+	<div id="main" role="main" class="hellobox roboticsbox">
 		<h1><?php echo ucfirst($_GET["topic"]) . ' Help'; ?></h1>
 	</div>
 	<nav>
@@ -30,8 +30,9 @@
         echo "<p>This form is using Markdown syntax for formatting. This means that any valid Markdown formatting will show in the final product, as will any valid HTML syntax.</p>";
         
         echo "<h3>Images</h3>";
-        echo "<p>First off, I recommend resizing images before uploading them. They don't need to be more than 1000 pixels on the long side, and anything larger makes the files and printing both slower.</p>";
-        echo "<p>Second, <b>If you want to have images at specific parts of the documenting</b>, mark these locations with the numbers 1 through 5 in double percent signs (<code>%%1%%</code> for image #1, <code>%%2%%</code> for #2, etc.) and they will be embedded at this point in the text.</p>";
+        echo "<ol><li>I recommend resizing images before uploading them. They don't need to be more than 1000 pixels on the long side, and anything larger makes the files and printing both slower.</li>";
+        echo "<li><b>If you want to have images at specific parts of the documenting</b>, mark these locations with the numbers 1 through 5 in double percent signs (<code>%%1%%</code> for image #1, <code>%%2%%</code> for #2, etc.) and they will be embedded at this point in the text.</li>";
+        echo "</ol>";
     }
     ?>
 

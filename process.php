@@ -13,7 +13,7 @@
 </head>
 <body class="php">
 <div id="container">
-	<div id="main" role="main" class="hellobox">
+	<div id="main" role="main" class="hellobox roboticsbox">
 	    <header style="position:absolute"><a href="http://koding.com">Koding.com</a></header>
 		<h1><?php echo 'Welcome'; ?></h1>
 	</div>
