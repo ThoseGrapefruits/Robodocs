@@ -16,3 +16,4 @@ A small webpage where our school's robotics team can add to the daily documentat
 	- Link on main page + post-submission page to generate HTML
 	- Can print from there
 - Look into PDF generation from HTML
+- JavaScript form validation ✓
