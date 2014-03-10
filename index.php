@@ -35,8 +35,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Your Name</td>
-                    <td><input type="text" autofocus name="name" placeholder="Name">*</td>
+                    <td>Name</td>
+                    <td><input type="text" autofocus name="name" placeholder="Your Name">*</td>
                 </tr>
                 <tr>
                     <td>Date</td>

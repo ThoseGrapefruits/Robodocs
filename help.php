@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Robotics Documentation Program</title>
+<title><?php echo ucfirst($_GET["topic"]) . ' Help'; ?></title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="../style.css">
 <!--[if IE]>
