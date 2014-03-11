@@ -23,7 +23,9 @@
 		<li><a href="about-me.php">About Me</a></li>
 	</ul>
 	</nav>
+
 <?php
+session_start();
 require_once('recaptchalib.php');
 $privatekey = "6LdDx-8SAAAAALi2H0pxp2BNco6y7_pJqoasFCYo";
 $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
@@ -37,25 +39,21 @@ else
 	if(isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']))
 	{	// User input was given and complete.
 		$documentation = $_POST['documentation'];
-		$images = $_FILES['images[]'];
-		
-		$time = time();
-		$i = 1;
 		// Upload all of the image files
-		foreach ($images as $image)
+		$count=0;
+		$time = time();
+		foreach ($_FILES['file']['name'] as $filename) 
 		{
-			echo('media/' . $time . "_" . $i . pathinfo($image['name'], PATHINFO_EXTENSION));
-			if ($image['size'] <= 5000000)
-			{
-				$ret = file_put_contents('media/' . $time . "_" . $i . pathinfo($image, PATHINFO_EXTENSION), $image, FILE_APPEND | LOCK_EX);
-			}
-			else
-			{
-				die('<h2>One or more of your images were too big.<br>5MB max per file.</h2>');
-			}
-			$i++;
+			$target = './media/' . $time . $count;
+			echo $target;
+			$temp = $target;
+			$tmp = $_FILES['images']['tmp_name'][$count];
+			$count = $count + 1;
+			$temp = $temp.basename($filename);
+			move_uploaded_file($tmp,$temp);
+			$temp = '';
+			$tmp = '';
 		}
-		unset($value);
 	
 		$data = "##" . $_POST['date'] . "\n"
 					 . "> Author: " . $_POST['name'] . "\n\n"
@@ -79,6 +77,7 @@ else
 	}
 }
 ?>
+
 	<footer>
 	<h6>Made by <a href="http://loganmoore.me">Logan Moore</a>.</h2>
 	</footer>

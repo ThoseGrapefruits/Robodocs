@@ -69,15 +69,21 @@
 	</div>
 	<nav>
 	<ul>
-		<li><a href="../index.php">Home</a></li>
-		<li><a href="../about-me.php">About Me</a></li>
+		<li><a class="active" href="./index.php">Documentation</a></li>
+		<li><a href="./help.php">Help</a></li>
 	</ul>
 	</nav>
-	<div style="margin-left:auto;margin-right:auto;width:660px">
+	<div id="mainbody">
 		<form enctype="multipart/form-data" method="POST" name="Form" action="process.php" onsubmit="return validateForm()">
 			<br>
 			<h3>Information</h3>
 			<table>
+				<tr>
+					<td>Team Number</td>
+					<td>
+						<input type="radio" name="teamnumber" value="4262" checked id="teamnumberradio">4262 <input type="radio" name="teamnumber" value="4373" id="teamnumberradio">4373
+					</td>
+				</tr>
 				<tr>
 					<td>Name</td>
 					<td><input type="text" autofocus name="name" placeholder="Your Name">*</td>
@@ -85,12 +91,6 @@
 				<tr>
 					<td>Date</td>
 					<td><input type="date" name="date">*</td>
-				</tr>
-				<tr>
-					<td>Team Number</td>
-					<td>
-						<input type="radio" name="teamnumber" value="4262" checked id="teamnumberradio">4262 <input type="radio" name="teamnumber" value="4373" id="teamnumberradio">4373
-					</td>
 				</tr>
 			</table>
 			<br>
