@@ -14,13 +14,13 @@
 	this.fileNumber = 2;
 	function validateForm()
 	{
-		if (validateName() && validateDate() && validateDocumentation() && validateTeam() /*TODO*/ )
+		if (validateName() && validateDate() && validateDocumentation() && validateTeam() )
 		{
-			return true;	
+			return true;
 		}
 		else
 		{
-			alert("Please fill in all required forms fully.")
+			alert("Please fill in all required forms fully.");
 			return false;
 		}
 	}
@@ -53,17 +53,12 @@
 	}
 	function validateTeam()
 	{
-		var teamnumber=document.forms["Form"]["teamnumber"].value;
+		var teamnumber=document.forms["Form"]["teamnumber"].isSelected();
 		if (teamnumber == null || teamnumber == "")
 		{
 			return false;
 		}
 		return true;
-	}
-	function addFile()
-	{
-		document.getElementById('fileInsert').insertAdjacentHTML('beforeend', '<li><input type="file" name="file'.concat(this.fileNumber, '" accept="image/*" ></li>'));
-		this.fileNumber++;
 	}
 </script>
 </head>
@@ -78,18 +73,11 @@
 		<li><a href="../about-me.php">About Me</a></li>
 	</ul>
 	</nav>
-
 	<div style="margin-left:auto;margin-right:auto;width:660px">
-		<form method="post" name="Form" action="process.php" onsubmit="return validateForm()">
+		<form enctype="multipart/form-data" method="POST" name="Form" action="process.php" onsubmit="return validateForm()">
 			<br>
 			<h3>Information</h3>
 			<table>
-				<tr>
-					<td>Team Number</td>
-					<td>
-						<input type="radio" name="teamnumber" value="4262" id="teamnumberradio">4262 <input type="radio" name="teamnumber" value="4373" id="teamnumberradio">4373
-					</td>
-				</tr>
 				<tr>
 					<td>Name</td>
 					<td><input type="text" autofocus name="name" placeholder="Your Name">*</td>
@@ -98,17 +86,20 @@
 					<td>Date</td>
 					<td><input type="date" name="date">*</td>
 				</tr>
+				<tr>
+					<td>Team Number</td>
+					<td>
+						<input type="radio" name="teamnumber" value="4262" checked id="teamnumberradio">4262 <input type="radio" name="teamnumber" value="4373" id="teamnumberradio">4373
+					</td>
+				</tr>
 			</table>
 			<br>
 			<h3>Documentation <a style="help" href="help.php?topic=documentation">?</a></h3>
-			<p>Insert images at specific points in the text with <code>%%1%%</code>, <code>%%2%%</code>, etc. with the image number indices. If no places are given, they will be added at the end of the current post.</p>
-			<textarea name="documentation" maxlength="10000" rows="16" cols="100"></textarea>
+			<textarea id="flex" name="documentation" maxlength="10000" rows="16"></textarea>
 			<br>
 			<h3>Upload Images</h3>
-			<ol id="fileInsert">
-				<li><input type="file" name="file1" accept="image/*" ></li>
-			</ol>
-			<button type="button" onClick="addFile()">Add Image</button>
+			<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+			<input type="file" name="images[]" accept="image/*" multiple>
 			<br>
 			<h3>Captcha</h3>
 			<?php
@@ -117,7 +108,6 @@
 				echo recaptcha_get_html($publickey);
 			?>
 			<br>
-			<input type=""
 			<br><input type="submit" value="Submit"></div>
 		</form>
 	</div>

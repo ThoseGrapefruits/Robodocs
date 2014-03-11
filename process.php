@@ -24,31 +24,41 @@
 	</ul>
 	</nav>
 <?php
-
 require_once('recaptchalib.php');
 $privatekey = "6LdDx-8SAAAAALi2H0pxp2BNco6y7_pJqoasFCYo";
 $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
 
-if (!$resp->is_valid)
-{   // cAPTCHA was not valid.
+if(!$resp->is_valid)
+{	// Captcha was not valid.
 	die ("<h2>The reCAPTCHA wasn't entered correctly. Go back and try it again.<br>(reCAPTCHA said: " . $resp->error . ")</h2>");
 }
 else
-{	// cAPTCHA was valid.
-	if(isset($_POST['name']) && isset($_POST['date']))
+{	// Captcha was valid.
+	if(isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']))
 	{	// User input was given and complete.
-	$documentation = $_POST['documentation'];
-	
-	// Upload all of the image files
-	for ($i = 1; isset($_POST['file' . $i]); $i++)
-	{
-		$file = $_POST['file' . $i];
+		$documentation = $_POST['documentation'];
+		$images = $_FILES['images[]'];
+		
 		$time = time();
-		$ret = file_put_contents('media/' . $time . "_" . $i . pathinfo($file, PATHINFO_EXTENSION), $file, FILE_APPEND | LOCK_EX);
-	}
+		$i = 1;
+		// Upload all of the image files
+		foreach ($images as $image)
+		{
+			echo('media/' . $time . "_" . $i . pathinfo($image['name'], PATHINFO_EXTENSION));
+			if ($image['size'] <= 5000000)
+			{
+				$ret = file_put_contents('media/' . $time . "_" . $i . pathinfo($image, PATHINFO_EXTENSION), $image, FILE_APPEND | LOCK_EX);
+			}
+			else
+			{
+				die('<h2>One or more of your images were too big.<br>5MB max per file.</h2>');
+			}
+			$i++;
+		}
+		unset($value);
 	
 		$data = "##" . $_POST['date'] . "\n"
-					 . "> " . $_POST['name'] . "\n\n"
+					 . "> Author: " . $_POST['name'] . "\n\n"
 					 . $documentation;
 		$ret = file_put_contents('documentation' . $_POST['teamnumber'] . '.md', $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)

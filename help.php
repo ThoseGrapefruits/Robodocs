@@ -18,23 +18,23 @@
 	</div>
 	<nav>
 	<ul>
-	    <li><a href="../index.php">Home</a></li>
+		<li><a href="../index.php">Home</a></li>
 		<li><a href="../about-me.php">About Me</a></li>
 	</ul>
 	</nav>
 
-    <?php
-    if ($_GET["topic"] == "documentation")
-    {
-        echo "<h3>Markdown</h3>";
-        echo "<p>This form is using Markdown syntax for formatting. This means that any valid Markdown formatting will show in the final product, as will any valid HTML syntax.</p>";
-        
-        echo "<h3>Images</h3>";
-        echo "<ol><li>I recommend resizing images before uploading them. They don't need to be more than 1000 pixels on the long side, and anything larger makes the files and printing both slower.</li>";
-        echo "<li><p><b>If you want to have images at specific parts of the documenting</b>, mark these locations with the image numbers in double percent signs (<code>%%1%%</code> for image #1, <code>%%2%%</code> for #2, etc.) and they will be embedded at this point in the text.</p><p>The images with no location marker will be included at the end of the post.</p></li>";
-        echo "</ol>";
-    }
-    ?>
+	<?php
+	if ($_GET["topic"] == "documentation")
+	{
+		echo "<h3>Markdown</h3>";
+		echo "<p>This form is using Markdown syntax for formatting. This means that any valid Markdown formatting will show in the final product, as will any valid HTML syntax.</p>";
+		
+		echo "<h3>Images</h3>";
+		echo "<ul><li>I recommend resizing images before uploading them. They don't need to be more than 1000 pixels on the long side, and anything larger makes the file upload and document printing both slower.</li>";
+		echo "<li>Images will be included at the end of the post.</li>";
+		echo "</ul>";
+	}
+	?>
 
 	<footer>
 	<h6>Made by <a href="http://loganmoore.me">Logan Moore</a>.</h2>
