@@ -101,6 +101,7 @@
 			<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 			<input type="file" name="images[]" accept="image/*" multiple>
 			<br>
+			<!--Engineering section, team section, business plan/strategic plan/sustainability plan-->
 			<h3>Captcha</h3>
 			<?php
 				require_once('recaptchalib.php');
