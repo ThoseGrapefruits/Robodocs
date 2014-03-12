@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	function validateForm()
 	{
-		if (validateName() && validateDate() && validateDocumentation() && validateTeam() )
+		if (validateName() && validateDate() && validateDocumentation() && validateTeam() && validateCategory() )
 		{
 			return true;
 		}
@@ -59,6 +59,15 @@
 		}
 		return true;
 	}
+	function validateCategory()
+	{
+		var category = document.forms["Form"]["category"].isSelected();
+		if (category == null || category == "")
+		{
+			return false;
+		}
+		return true;
+	}
 </script>
 </head>
 <body class="php">
@@ -94,7 +103,7 @@
 			</table>
 			<br>
 			<h3>Documentation <a style="help" title="Formatting help and other information." href="help.php?topic=documentation">?</a></h3>
-			<b>Section:</b> <input type="radio" name="category" value="eng" checked id="engineering"></input>
+			<b>Section:</b> <input type="radio" name="category" value="engineering" checked id="engineering"></input>
 			<label for="engineering">Engineering</label>
 			<input type="radio" name="category" value="team" id="team">
 			<label for="team">Team & Outreach</label>
@@ -106,10 +115,9 @@
 			<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 			<input type="file" name="images[]" accept="image/*" multiple>
 			<br>
-			<!--Engineering section, team section, business plan/strategic plan/sustainability plan-->
 			<h3>Captcha</h3>
 			<?php
-				require_once('recaptchalib.php');
+				require_once('php/recaptchalib.php');
 				$publickey = "6LdDx-8SAAAAANxhMNRdnKzl9K75GFg1q4HwQv6l";
 				echo recaptcha_get_html($publickey);
 			?>

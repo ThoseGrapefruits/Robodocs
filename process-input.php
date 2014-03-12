@@ -36,7 +36,7 @@ if(!$resp->is_valid)
 }
 else
 {	// Captcha was valid.
-	if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']))
+	if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']) && isset($_POST['category']))
 	{	// User input was given and complete.
 		// Upload all of the image files
 		// $count = 0;
@@ -55,7 +55,7 @@ else
 		// 	$tmp = '';
 		// }
 		$data = "##" . $_POST['date'] . "\n" . "> Author: " . $_POST['name'] . "\n\n". $_POST['documentation'];
-		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation' . $_POST['teamnumber'] . '.md';
+		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $_POST['teamnumber']. '/' . $_POST['category'] . '.md';
 		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)
 		{
