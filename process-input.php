@@ -26,7 +26,7 @@
 
 <?php
 session_start();
-require_once('recaptchalib.php');
+require_once('php/recaptchalib.php');
 $privatekey = "6LdDx-8SAAAAALi2H0pxp2BNco6y7_pJqoasFCYo";
 $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
 
@@ -36,29 +36,27 @@ if(!$resp->is_valid)
 }
 else
 {	// Captcha was valid.
-	if(isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']))
+	if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']))
 	{	// User input was given and complete.
-		$documentation = $_POST['documentation'];
 		// Upload all of the image files
-		$count=0;
-		$time = time();
-		foreach ($_FILES['file']['name'] as $filename) 
-		{
-			$target = './media/' . $time . $count;
-			echo $target;
-			$temp = $target;
-			$tmp = $_FILES['images']['tmp_name'][$count];
-			$count = $count + 1;
-			$temp = $temp.basename($filename);
-			move_uploaded_file($tmp,$temp);
-			$temp = '';
-			$tmp = '';
-		}
-	
-		$data = "##" . $_POST['date'] . "\n"
-					 . "> Author: " . $_POST['name'] . "\n\n"
-					 . $documentation;
-		$ret = file_put_contents('documentation' . $_POST['teamnumber'] . '.md', $data, FILE_APPEND | LOCK_EX);
+		// $count = 0;
+		// $time = time();
+		// echo $_FILES['file']['name'];
+		// foreach ($_FILES['file']['name'] as $filename) 
+		// {
+		// 	$target = './media/' . $time . $count;
+		// 	echo $target;
+		// 	$temp = $target;
+		// 	$tmp = $_FILES['images']['tmp_name'][$count];
+		// 	$count = $count + 1;
+		// 	$temp = $temp.basename($filename);
+		// 	move_uploaded_file($tmp,$temp);
+		// 	$temp = '';
+		// 	$tmp = '';
+		// }
+		$data = "##" . $_POST['date'] . "\n" . "> Author: " . $_POST['name'] . "\n\n". $_POST['documentation'];
+		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation' . $_POST['teamnumber'] . '.md';
+		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)
 		{
 			die('<h2>There was an error writing this file.</h2>');
@@ -67,12 +65,12 @@ else
 		{
 			// File could be written to.
 			
-			echo "<h2>Documentation submitted successfully!</h2>";
+			die("<h2>Documentation submitted successfully!</h2>");
 			// TODO option to generate HTML & PDF from MarkDown
 		}
 	}
 	else
-	{
+	{	// User input was not valid
 		die('<h2>Incomplete data given.</h2>');
 	}
 }

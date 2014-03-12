@@ -24,7 +24,7 @@
 	</nav>
 	<div id="mainbody">
 		<?php
-		if ($_GET["topic"] == "documentation")
+		function documentationHelp()
 		{
 			echo '<h3>Markdown</h3>';
 			echo '<p>This form is using Markdown syntax for formatting. This means that any valid Markdown formatting will show in the final product, as will any valid HTML syntax.</p>';
@@ -34,18 +34,37 @@
 			echo '<li>Images will be included at the end of the post.</li>';
 			echo '</ul>';
 		}
-		else if ($_GET["topic"] == "markdown")
+		function markdownHelp()
 		{
-			echo '<h2><a href="http://daringfireball.net/projects/markdown/syntax">Full Markdown Syntax Reference</a></h2>';
+			echo '<h5><pre><div align="center"><a href="http://daringfireball.net/projects/markdown/syntax">Full Markdown Syntax Reference</a></div></pre></h5>';
 			echo '<h3>Markdown Syntax Quick Reference</h3>';
-			echo '<h5>Headers</h5><ul><li></li>';
+			echo '<h5>Headers</h5><ul>';
+			echo '<li>Headers are reduced by 1 so that the top-level header sizes are reserved for the start of the document. (# will be h2, ## -> h3, etc.) (If you don\'t know what this means, don\'t worry about it. It shouldn\'t affect anything you\'re doing)</li>';
 			echo '</ul>';
+		}
+		function allHelp()
+		{
+			echo "<h2>Documentation</h2>";
+			documentationHelp();
+			echo "<br><br><hr>";
+			echo "<h2>Markdown</h2>";
+			markdownHelp();
+		}
+		
+		$topic = $_GET["topic"];
+		if ($topic == "documentation")
+		{
+			documentationHelp();
+		}
+		else if ($topic == "markdown")
+		{
+			markdownHelp();
 		}
 		else
 		{
-			echo '<h3>Topics</h3>';
-			echo '<ul><li><a href="?topic=documentation">Documentation</a></li><li><a href="?topic=markdown">Markdown</a></li></ul>';
+			allHelp();
 		}
+		
 		?>
 	</div>
 

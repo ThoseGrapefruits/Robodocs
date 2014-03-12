@@ -11,7 +11,6 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
-	this.fileNumber = 2;
 	function validateForm()
 	{
 		if (validateName() && validateDate() && validateDocumentation() && validateTeam() )
@@ -74,27 +73,33 @@
 	</ul>
 	</nav>
 	<div id="mainbody">
-		<form enctype="multipart/form-data" method="POST" name="Form" action="process.php" onsubmit="return validateForm()">
+		<form enctype="multipart/form-data" method="POST" name="Form" action="process-input.php" onsubmit="return validateForm()">
 			<br>
 			<h3>Information</h3>
 			<table>
 				<tr>
 					<td>Team Number</td>
 					<td>
-						<input type="radio" name="teamnumber" value="4262" checked id="teamnumberradio">4262 <input type="radio" name="teamnumber" value="4373" id="teamnumberradio">4373
+						<input type="radio" name="teamnumber" value="4262" checked id="4262"><label for="4262">4262</label> <input type="radio" name="teamnumber" value="4373" id="4373"><label for="4373">4373</label>
 					</td>
 				</tr>
 				<tr>
 					<td>Name</td>
-					<td><input type="text" autofocus name="name" placeholder="Your Name">*</td>
+					<td><input type="text" autofocus name="name" placeholder="Your Name"></td>
 				</tr>
 				<tr>
 					<td>Date</td>
-					<td><input type="date" name="date">*</td>
+					<td><input type="date" name="date"></td>
 				</tr>
 			</table>
 			<br>
-			<h3>Documentation <a style="help" href="help.php?topic=documentation">?</a></h3>
+			<h3>Documentation <a style="help" title="Formatting help and other information." href="help.php?topic=documentation">?</a></h3>
+			<b>Section:</b> <input type="radio" name="category" value="eng" checked id="engineering"></input>
+			<label for="engineering">Engineering</label>
+			<input type="radio" name="category" value="team" id="team">
+			<label for="team">Team & Outreach</label>
+			<input type="radio" name="category" value="strategy" id="strategy">
+			<label for="strategy">Business Plan / Strategy / Sustainability Plan</label><br><br>
 			<textarea id="flex" name="documentation" maxlength="10000" rows="16"></textarea>
 			<br>
 			<h3>Upload Images</h3>
