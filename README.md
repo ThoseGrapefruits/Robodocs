@@ -11,6 +11,7 @@ A small webpage where our school's robotics team can add to the daily documentat
 	- File Upload
 	- Markdown (?)
 - Finish file writing ✓
+- Add different files for each section of documentation
 - [HTML export](http://michelf.ca/projects/php-markdown/)
 	- Link on main page + post-submission page to generate HTML
 	- Can print from there
