@@ -57,9 +57,10 @@ else
 		$count = 1;
 		foreach ($fileLocations as $file)
 		{
-			$data = $data . '![Image ' . $count . '](' . $file . ')';
+			$data .= '![Image ' . $count . '](' . $file . ')';
 			$count = $count + 1;
 		}
+		$data .= '\n\n';
 		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
 		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)
@@ -68,10 +69,13 @@ else
 		}
 		else
 		{
+			$teamnumber = $_POST['teamnumber'];
+			$category = $_POST['category'];
+			$output = './documentation/' . $teamnumber . '/' . $category . '.html';
 			// File could be written to.
-			
-			die("<h2>Documentation submitted successfully!</h2>");
-			// TODO option to generate HTML & PDF from MarkDown
+			include 'generate-file.php';
+			generateFile($category, $output, $teamnumber);
+			die('<h2>Documentation submitted successfully!</h2><h2><a href="'. $output .'">View Updated File</a></h2>');
 		}
 	}
 	else

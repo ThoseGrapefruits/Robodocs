@@ -23,50 +23,58 @@
 		<li><a href="./help.php">Help</a></li>
 	</ul>
 	</nav>
-
 	<?php
-	require_once('php/md/MarkdownInterface.php');
-	require_once('php/md/Markdown.php');
 	$document = $_GET['document'];
 	$output = $_GET['output'];
 	$teamnumber = $_GET['teamnumber'];
 	if ( ($document == 'engineering' || $document == 'team' || $document == 'strategy') && ($teamnumber == '4262' || $teamnumber == '4373') )
 	{
-		if ($output === 'pdf')
-		{
-			echo "<h2>To-Do Generate " . $document . " as " . $output . ".</h2>";
-		}
-		else
-		{
-			echo (Markdown::defaultTransform(file_get_contents('/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $teamnumber . '/' . $document . '.md' )));
-		}
+		echo generateFile($document, $output, $teamnumber);
+		// header( 'Location: ./documentation/' . $teamnumber . '/' . $document . '.html' );
 	}
 	else
 	{
-		echo '<form enctype="multipart/form-data" method="GET" name="Form" action="generate-file.php" onsubmit="generateDocument()">';
-		
-		echo '<h3>Team Number</h3>';
-		echo '<input type="radio" name="teamnumber" value="4262" checked id="4262"><label for="4262">4262</label> <input type="radio" name="teamnumber" value="4373" id="4373"><label for="4373">4373</label>';
-		
-		echo '<h3>Document</h3>';
-		echo '<input type="radio" name="document" value="engineering" checked id="engineering">';
-		echo '<label for="engineering">Engineering</label><br>';
-		echo '<input type="radio" name="document" value="team" id="team"></input>';
-		echo '<label for="team">Team & Outreach</label><br>';
-		echo '<input type="radio" name="document" value="strategy" id="strategy"></input>';
-		echo '<label for="strategy">Business Plan / Strategy / Sustainability Plan</label><br>';
-		
-		echo '<h3>Format</h3>';
-		echo '<input type="radio" name="output" value="html" checked id="html">';
-		echo '<label for="html">HTML</label><br>';
-		echo '<input type="radio" name="output" value="pdf" id="pdf"></input>';
-		echo '<label for="pdf">PDF</label><br><br>';
-		echo '<input type="submit" value="View File" />';
+		?>
+		<form enctype="multipart/form-data" method="GET" name="Form" action="generate-file.php">
+			<h3>Team Number</h3>
+			<input type="radio" name="teamnumber" value="4262" checked id="4262"><label for="4262">4262</label> <input type="radio" name="teamnumber" value="4373" id="4373"><label for="4373">4373</label>
+			<h3>Document</h3>
+			<input type="radio" name="document" value="engineering" checked id="engineering">
+			<label for="engineering">Engineering</label><br>
+			<input type="radio" name="document" value="team" id="team"></input>
+			<label for="team">Team & Outreach</label><br>
+			<input type="radio" name="document" value="strategy" id="strategy"></input>
+			<label for="strategy">Business Plan / Strategy / Sustainability Plan</label><br>
+			<h3>Format</h3>
+			<input type="radio" name="output" value="html" checked id="html">
+			<label for="html">HTML</label><br>
+			<input type="radio" name="output" value="pdf" id="pdf"></input>
+			<label for="pdf">PDF</label><br><br>
+			<input type="submit" value="View File" />
+		</form>
+		<?
 	}
-	?>
+	
+	function generateFile($document, $output, $teamnumber)
+	{
 
+		if ($output === 'pdf')
+		{
+			return "<h2>To-Do Generate " . $document . " as " . $output . ".</h2>";
+		}
+		else
+		{
+			include 'php/Parsedown.php';
+			$parsedown = new Parsedown();
+			$basepath = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $teamnumber . '/' . $document;
+			// return file_get_contents($basepath . '.md' );
+			$data = $parsedown->parse(file_get_contents($basepath . '.md' ));
+			return $data;
+			file_put_contents($path . '.html', $data, LOCK_EX);
+		}
+	}	?>
 	<footer>
-	<h6>Made by <a href="http://loganmoore.me">Logan Moore</a>.</h2>
+		<h6>Made by <a href="http://loganmoore.me">Logan Moore</a>.</h2>
 	</footer>
 </div>
 <script type="text/javascript" src="/js/retina.js"></script>
