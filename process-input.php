@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="../style.css">
 <!--[if IE]>
-	  	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  	<![endif]-->
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
 </head>
@@ -32,30 +32,35 @@ $resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["rec
 
 if(!$resp->is_valid)
 {	// Captcha was not valid.
-	die ("<h2>The reCAPTCHA wasn't entered correctly. Go back and try it again.<br>(reCAPTCHA said: " . $resp->error . ")</h2>");
+	die ("<h2>The reCAPTCHA wasn't entered correctly. Go back and try it again.</h2>");
 }
 else
 {	// Captcha was valid.
 	if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']) && isset($_POST['category']))
 	{	// User input was given and complete.
 		// Upload all of the image files
-		// $count = 0;
-		// $time = time();
-		// echo $_FILES['file']['name'];
-		// foreach ($_FILES['file']['name'] as $filename) 
-		// {
-		// 	$target = './media/' . $time . $count;
-		// 	echo $target;
-		// 	$temp = $target;
-		// 	$tmp = $_FILES['images']['tmp_name'][$count];
-		// 	$count = $count + 1;
-		// 	$temp = $temp.basename($filename);
-		// 	move_uploaded_file($tmp,$temp);
-		// 	$temp = '';
-		// 	$tmp = '';
-		// }
-		$data = "##" . $_POST['date'] . "\n" . "> Author: " . $_POST['name'] . "\n\n". $_POST['documentation'];
-		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $_POST['teamnumber']. '/' . $_POST['category'] . '.md';
+		$fileLocations = array();
+		$count = 0;
+		$time = time();
+		foreach ($_FILES['images']['name'] as $filename) 
+		{
+			$target = './media/' . $time . "_" . $count;
+			$fileLocations[] = $target;
+			$temp = $target;
+			$tmp = $_FILES['images']['tmp_name'][$count];
+			$count = $count + 1;
+			move_uploaded_file($tmp,$temp);
+			$temp = '';
+			$tmp = '';
+		}
+		$data = "##" . $_POST['date'] . "\n" . "> Author: " . $_POST['name'] . "\n\n". $_POST['documentation'] . "\n\n";
+		$count = 1;
+		foreach ($fileLocations as $file)
+		{
+			$data = $data . '![Image ' . $count . '](' . $file . ')';
+			$count = $count + 1;
+		}
+		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
 		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)
 		{

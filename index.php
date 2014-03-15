@@ -13,7 +13,11 @@
 <script type="text/javascript">
 	function validateForm()
 	{
-		if (validateName() && validateDate() && validateDocumentation() && validateTeam() && validateCategory() )
+		if ( validateName()
+		&& validateDate()
+		&& validateDocumentation()
+		&& validateTeam()
+		&& validateCategory() )
 		{
 			return true;
 		}
@@ -77,7 +81,8 @@
 	</div>
 	<nav>
 	<ul>
-		<li><a class="active" href="./index.php">Documentation</a></li>
+		<li><a class="active" href="./index.php">Input</a></li>
+		<li><a href="./generate-file.php">View</a></li>
 		<li><a href="./help.php">Help</a></li>
 	</ul>
 	</nav>
@@ -103,10 +108,10 @@
 			</table>
 			<br>
 			<h3>Documentation <a style="help" title="Formatting help and other information." href="help.php?topic=documentation">?</a></h3>
-			<b>Section:</b> <input type="radio" name="category" value="engineering" checked id="engineering"></input>
-			<label for="engineering">Engineering</label>
+			<b>Section:</b><br><input type="radio" name="category" value="engineering" checked id="engineering"></input>
+			<label for="engineering">Engineering</label><br>
 			<input type="radio" name="category" value="team" id="team">
-			<label for="team">Team & Outreach</label>
+			<label for="team">Team & Outreach</label><br>
 			<input type="radio" name="category" value="strategy" id="strategy">
 			<label for="strategy">Business Plan / Strategy / Sustainability Plan</label><br><br>
 			<textarea id="flex" name="documentation" maxlength="10000" rows="16"></textarea>
@@ -119,7 +124,7 @@
 			<?php
 				require_once('php/recaptchalib.php');
 				$publickey = "6LdDx-8SAAAAANxhMNRdnKzl9K75GFg1q4HwQv6l";
-				echo recaptcha_get_html($publickey);
+				echo recaptcha_get_html($publickey, null ,true);
 			?>
 			<br>
 			<br><input type="submit" value="Submit"></div>

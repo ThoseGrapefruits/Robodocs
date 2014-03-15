@@ -18,7 +18,8 @@
 	</div>
 	<nav>
 	<ul>
-		<li><a href="./index.php">Documentation</a></li>
+		<li><a  href="./index.php">Input</a></li>
+		<li><a href="./generate-file.php">View</a></li>
 		<li><a class="active" href="./help.php">Help</a></li>
 	</ul>
 	</nav>
