@@ -16,7 +16,6 @@
 	if ( ($document == 'engineering' || $document == 'team' || $document == 'strategy') && ($teamnumber == '4262' || $teamnumber == '4373') )
 	{
 		echo generateFile($document, $output, $teamnumber);
-		// header( 'Location: ./documentation/' . $teamnumber . '/' . $document . '.html' );
 	}
 	else
 	{

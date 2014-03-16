@@ -26,63 +26,51 @@
 
 <?php
 session_start();
-require_once('php/recaptchalib.php');
-$privatekey = "6LdDx-8SAAAAALi2H0pxp2BNco6y7_pJqoasFCYo";
-$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
-
-if(!$resp->is_valid)
-{	// Captcha was not valid.
-	die ("<h2>The reCAPTCHA wasn't entered correctly. Go back and try it again.</h2>");
-}
-else
-{	// Captcha was valid.
-	if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']) && isset($_POST['category']))
-	{	// User input was given and complete.
-		// Upload all of the image files
-		$fileLocations = array();
-		$count = 0;
-		$time = time();
-		foreach ($_FILES['images']['name'] as $filename) 
-		{
-			$target = './media/' . $time . "_" . $count;
-			$fileLocations[] = $target;
-			$temp = $target;
-			$tmp = $_FILES['images']['tmp_name'][$count];
-			$count = $count + 1;
-			move_uploaded_file($tmp,$temp);
-			$temp = '';
-			$tmp = '';
-		}
-		$data = "##" . $_POST['date'] . "\n" . "###Author: " . $_POST['name'] . "\n\n". $_POST['documentation'] . "\n\n";
-		$count = 1;
-		foreach ($fileLocations as $file)
-		{
-			$data .= '![Image ' . $count . '](' . $file . ')';
-			$count = $count + 1;
-		}
-		$data .= "\n\n";
-		$path = 'documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
-		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
-		if($ret === false)
-		{
-			die('<h2>There was an error writing this file.</h2>');
-		}
-		else
-		{
-			$teamnumber = $_POST['teamnumber'];
-			$category = $_POST['category'];
-			$output = './documentation/' . $teamnumber . '/' . $category . '.html';
-			// File could be written to.
-			include 'generate-file.php';
-			generateFile($category, $output, $teamnumber);
-			die('<h2>Documentation submitted successfully!</h2><h2><a href="'. $output .'">View Updated File</a></h2>');
-		}
+if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date']) && isset($_POST['documentation']) && isset($_POST['category']))
+{	// User input was given and complete.
+	// Upload all of the image files
+	$fileLocations = array();
+	$count = 0;
+	$time = time();
+	foreach ($_FILES['images']['name'] as $filename) 
+	{
+		$target = './media/' . $time . "_" . $count;
+		$fileLocations[] = $target;
+		$temp = $target;
+		$tmp = $_FILES['images']['tmp_name'][$count];
+		$count = $count + 1;
+		move_uploaded_file($tmp,$temp);
+		$temp = '';
+		$tmp = '';
+	}
+	$data = "##" . $_POST['date'] . "\n" . "###Author: " . $_POST['name'] . "\n\n". $_POST['documentation'] . "\n\n";
+	$count = 1;
+	foreach ($fileLocations as $file)
+	{
+		$data .= '![Image ' . $count . '](' . $file . ')';
+		$count = $count + 1;
+	}
+	$data .= "\n\n<br><hr>";
+	$path = 'documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
+	$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
+	if($ret === false)
+	{
+		die('<h2>There was an error writing this file.</h2>');
 	}
 	else
-	{	// User input was not valid
-		die('<h2>Incomplete data given.</h2>');
+	{
+		$teamnumber = $_POST['teamnumber'];
+		$category = $_POST['category'];
+		$output = './documentation/' . $teamnumber . '/' . $category . '.html';
+		// File could be written to.
+		die('<h2>Documentation submitted successfully!</h2><h2><a href="'. 'generate-file.php?teamnumber=' . $teamnumber . '&document=' . $category .'">View Updated File</a></h2>');
 	}
 }
+else
+{	// User input was not valid
+	die('<h2>Incomplete data given.</h2>');
+}
+// }
 ?>
 
 	<footer>

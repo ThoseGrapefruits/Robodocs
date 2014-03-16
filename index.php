@@ -120,13 +120,6 @@
 			<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 			<input type="file" name="images[]" accept="image/*" multiple>
 			<br>
-			<h3>Captcha</h3>
-			<?php
-				require_once('php/recaptchalib.php');
-				$publickey = "6LdDx-8SAAAAANxhMNRdnKzl9K75GFg1q4HwQv6l";
-				echo recaptcha_get_html($publickey, null ,true);
-			?>
-			<br>
 			<br><input type="submit" value="Submit"></div>
 		</form>
 	</div>
