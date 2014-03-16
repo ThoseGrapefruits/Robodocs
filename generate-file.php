@@ -73,7 +73,7 @@
 		{
 			include 'php/Parsedown.php';
 			$parsedown = new Parsedown();
-			$basepath = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $teamnumber . '/' . $document;
+			$basepath = 'documentation/' . $teamnumber . '/' . $document;
 			// return file_get_contents($basepath . '.md' );
 			$data = $parsedown->parse(file_get_contents($basepath . '.md' ));
 			return $data . '<script src="/js/prettify/run_prettify.js?skin=sons-of-obsidian"></script>';

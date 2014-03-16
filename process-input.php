@@ -61,7 +61,7 @@ else
 			$count = $count + 1;
 		}
 		$data .= "\n\n";
-		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
+		$path = 'documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
 		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)
 		{
