@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Robotics Documentation Program</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="style.css">
 <!--[if IE]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -53,14 +53,14 @@ else
 			$temp = '';
 			$tmp = '';
 		}
-		$data = "##" . $_POST['date'] . "\n" . "> Author: " . $_POST['name'] . "\n\n". $_POST['documentation'] . "\n\n";
+		$data = "##" . $_POST['date'] . "\n" . "###Author: " . $_POST['name'] . "\n\n". $_POST['documentation'] . "\n\n";
 		$count = 1;
 		foreach ($fileLocations as $file)
 		{
 			$data .= '![Image ' . $count . '](' . $file . ')';
 			$count = $count + 1;
 		}
-		$data .= '\n\n';
+		$data .= "\n\n";
 		$path = '/home/thosegrapefruits/Web/robotics-documentation/documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
 		$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 		if($ret === false)
