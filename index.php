@@ -114,7 +114,7 @@
 				</tr>
 			</table>
 			<br>
-			<h3>Documentation <a style="help" title="Formatting help and other information." href="help.php?topic=documentation">?</a></h3>
+			<h3>Documentation <a id="help" title="Formatting help and other information." href="help.php?topic=documentation">?</a></h3>
 			<b>Section:</b><br><input type="radio" name="category" value="engineering" checked id="engineering"></input>
 			<label for="engineering">Engineering</label><br>
 			<input type="radio" name="category" value="team" id="team">
