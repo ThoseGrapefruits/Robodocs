@@ -14,10 +14,19 @@ body {
 body,button,input,select,textarea {
 	font-family: 'Ubuntu';
 }
-div mainbody {
+textarea {
+	width:93%;
+	max-width:42em;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+div .mainbody {
 	margin-left:auto;
 	margin-right:auto;
-	max-width:660px;
+	max-width:42em;
+	max-width:90%;
+	padding:10px;
 }
 a .help
 {
@@ -27,12 +36,12 @@ a .help
 form {
 	margin-left:auto;
 	margin-right:auto;
-	max-width:660px;
+	max-width:42em;
 }
 a {
 	margin-left:auto;
 	margin-right:auto;
-	max-width:660px;
+	max-width:42em;
 }
 /*a {
 	color:#00e;
@@ -66,7 +75,7 @@ ul,ol {
 	margin:1em 0;
 	padding:0 0 0 40px;
 	width:auto;
-	max-width: 660px;
+	max-width: 42em;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -109,14 +118,14 @@ header a {
 	-moz-animation:fadeIn 1s;
 	background:#000 no-repeat center bottom;
 	border-top: 1px solid transparent;
-	background:#000 url('images/yellow-flower.jpg') no-repeat center top;
+	background:#000 url('../images/yellow-flower.jpg') no-repeat center top;
 }
 .roboticsbox {
-    background:#000 url('images/LTM_7953.jpg') no-repeat center top;
+    background:#000 url('../images/LTM_7953.jpg') no-repeat center top;
 }
 
 .wrap {
-	width: 660px;
+	width: 42em;
 	margin: 0 auto;
 }
 
@@ -168,7 +177,7 @@ h4 {
 }
 h3, h4, h5 {
 	margin: 10px auto 0 auto;
-	max-width:660px
+	max-width:42em
 }
 h3 {
 	font-size:1.8em;
@@ -183,7 +192,7 @@ nav {
 p {
 	font-size:1.1em;
 	width:auto;
-	max-width: 660px;
+	max-width: 42em;
 	margin-left: auto;
 	margin-right: auto;
 	padding:0 10pt;
@@ -255,11 +264,6 @@ pre {
 .wrap {
   width: 600px;
   margin: 0 auto;
-}
-
-#flex {
-	width:100%;
-	max-width:660px;
 }
 
 dl {
@@ -386,7 +390,7 @@ body#not-found-page {
 		transform: translateY(10px)  translateX(0);
 	}
 }
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width:1300px) {
 	h1 {
 		font-size:6em;
 		letter-spacing:-2px;
@@ -394,12 +398,12 @@ body#not-found-page {
 		padding:80px 0 0 0;
 	}
 }
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:1000px) {
 	h1 {
 		font-size:4em;
 		letter-spacing:-2px;
 		margin:0 0 10px 0;
-		padding:80px 0 0 0;
+		padding:40px 0 0 0;
 	}
 	h2 {
 		font-size:2em;
@@ -432,12 +436,24 @@ body#not-found-page {
 		padding:20px 30px;
 	}
 	.hellobox {
-		height:230px;
+		height:130px;
 		background-size:auto 230px;
 	}
 	.wrap {
 		box-sizing: border-box;
 		width: 100%;
 		padding: 0 1em;
+	}
+}
+@media only screen and (max-width:642px) {
+	h1 {
+		font-size:3em;
+		letter-spacing:-2px;
+		margin:0 0 10px 0;
+		padding:40px 0 0 0;
+	}
+	.hellobox {
+		height:150px;
+		background-size:auto 230px;
 	}
 }

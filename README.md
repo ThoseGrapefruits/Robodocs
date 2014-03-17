@@ -22,4 +22,4 @@ A small webpage where our school's robotics team can add to the daily documentat
 		- Etc.
 - Look into PDF generation from HTML
 - JavaScript form validation ✓
-- Make text input prettier
+- Implement [Ace Editor](https://gist.github.com/duncansmart/5267653)
