@@ -11,7 +11,7 @@ body {
 	line-height:1.231;
 	background:#393630;
 }
-body,button,input,select,textarea {
+body,button,input,select {
 	font-family: 'Ubuntu';
 }
 textarea {
@@ -20,13 +20,20 @@ textarea {
 	display: block;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Ubuntu Mono';
+	color:#FFF;
+	background:rgba(0,0,0,0.4);
 }
 div .mainbody {
 	margin-left:auto;
 	margin-right:auto;
 	max-width:42em;
-	max-width:90%;
 	padding:10px;
+}
+#documentation { 
+	margin:auto;
+	width:93%;
+	height:400px;
 }
 #help
 {
@@ -198,7 +205,7 @@ h4 {
 	-webkit-transition:all .2s linear;
 }
 h3, h4, h5 {
-	margin: 10px auto 0 auto;
+	margin: 10px auto auto auto;
 	max-width:42em
 }
 h3 {

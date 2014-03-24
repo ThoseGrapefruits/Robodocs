@@ -73,13 +73,6 @@
 		return true;
 	}
 </script>
-<style type="text/css" media="screen">
-    #editor { 
-        margin:auto;
-        width:600px;
-        height:600px;
-    }
-</style>
 </head>
 <body class="php">
 <div id="container">
@@ -94,7 +87,7 @@
 	</ul>
 	</nav>
 	<div class="mainbody">
-		<form enctype="multipart/form-data" method="POST" name="Form" action="process-input.php" onsubmit="return validateForm()">
+		<form enctype="multipart/form-data" method="POST" name="Form" action="process-input.php" onsubmit="copyTextData(); return validateForm();">
 			<br>
 			<h3>Information</h3>
 			<table>
@@ -121,8 +114,7 @@
 			<label for="team">Team & Outreach</label><br>
 			<input type="radio" name="category" value="strategy" id="strategy">
 			<label for="strategy">Business Plan / Strategy / Sustainability</label><br><br>
-			<!--<textarea name="documentation" maxlength="10000" rows="16" placeholder="Input documentation here..."></textarea>-->
-			<textarea name="documentation" data-editor="markdown" rows="16"></textarea>
+			<textarea name="documentation" maxlength="10000" rows="16" placeholder="Input documentation here..."></textarea>
 			<br>
 			<h3>Upload Images</h3>
 			<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
@@ -136,40 +128,5 @@
 	<h6>Made by <a href="http://loganmoore.me">Logan Moore</a>.</h2>
 	</footer>
 </div>
-<script src="js/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-// var editor = ace.edit("editor");
-// 	editor.setTheme("ace/theme/monokai");
-// 	editor.getSession().setMode("ace/mode/markdown");
-
-$(function () {
-        $('textarea[data-editor]').each(function () {
-            var textarea = $(this);
- 
-            var mode = textarea.data('editor');
- 
-            var editDiv = $('<div>', {
-                position: 'absolute',
-                width: textarea.width(),
-                height: textarea.height(),
-                'class': textarea.attr('class')
-            }).insertBefore(textarea);
- 
-            textarea.css('visibility', 'hidden');
- 
-            var editor = ace.edit(editDiv[0]);
-            editor.renderer.setShowGutter(false);
-            editor.getSession().setValue(textarea.val());
-            editor.getSession().setMode("ace/mode/" + mode);
-            // editor.setTheme("ace/theme/idle_fingers");
-            
-            // copy back to textarea on form submit...
-            textarea.closest('form').submit(function () {
-                textarea.val(editor.getSession().getValue());
-            })
- 
-        });
-    });
-</script>
 </body>
 </html>

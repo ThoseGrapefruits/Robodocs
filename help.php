@@ -23,7 +23,7 @@
 		<li><a class="active" href="./help.php">Help</a></li>
 	</ul>
 	</nav>
-	<div id="mainbody">
+	<div class="mainbody">
 		<?php
 		function documentationHelp()
 		{

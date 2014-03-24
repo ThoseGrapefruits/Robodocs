@@ -32,16 +32,19 @@ if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date'])
 	$fileLocations = array();
 	$count = 0;
 	$time = time();
-	foreach ($_FILES['images']['name'] as $filename) 
+	if (file_exists($_FILES['images']['tmp_name']) && is_uploaded_file($_FILES['images']['tmp_name']))
 	{
-		$target = './media/' . $time . "_" . $count;
-		$fileLocations[] = $target;
-		$temp = $target;
-		$tmp = $_FILES['images']['tmp_name'][$count];
-		$count = $count + 1;
-		move_uploaded_file($tmp,$temp);
-		$temp = '';
-		$tmp = '';
+		foreach ($_FILES['images']['name'] as $filename) 
+		{
+			$target = './media/' . $time . "_" . $count;
+			$fileLocations[] = $target;
+			$temp = $target;
+			$tmp = $_FILES['images']['tmp_name'][$count];
+			$count = $count + 1;
+			move_uploaded_file($tmp,$temp);
+			$temp = '';
+			$tmp = '';
+		}
 	}
 	$data = "##" . $_POST['date'] . "\n" . "###Author: " . $_POST['name'] . "\n\n". $_POST['documentation'] . "\n\n";
 	$count = 1;
@@ -50,7 +53,7 @@ if(isset($_POST['teamnumber']) && isset($_POST['name']) && isset($_POST['date'])
 		$data .= '![Image ' . $count . '](' . $file . ')';
 		$count = $count + 1;
 	}
-	$data .= "\n\n<br><hr>";
+	$data .= "\n\n<br><hr>\n\n";
 	$path = 'documentation/' . $_POST['teamnumber'] . '/' . $_POST['category'] . '.md';
 	$ret = file_put_contents($path, $data, FILE_APPEND | LOCK_EX);
 	if($ret === false)
