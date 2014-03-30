@@ -128,7 +128,6 @@ header a {
 	overflow:hidden;
 	width:45px;
 	height:45px;
-	background: #00b858 url('//koding.com/hello/img/nav-logo.png') no-repeat center center;
 	margin:40px;
 }
 @-webkit-keyframes fadeIn {
