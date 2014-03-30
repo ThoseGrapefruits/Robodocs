@@ -24,3 +24,4 @@ A small webpage where our school's robotics team can add to the daily documentat
 - JavaScript form validation ✓
 - Admin page
 	- On-page password changing for the current user
+	- Manual file editing in browser
