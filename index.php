@@ -87,7 +87,7 @@
 	</ul>
 	</nav>
 	<div class="mainbody">
-		<form enctype="multipart/form-data" method="POST" name="Form" action="process-input.php" onsubmit="copyTextData(); return validateForm();">
+		<form enctype="multipart/form-data" method="POST" name="Form" action="process-input.php" onsubmit="return validateForm();">
 			<br>
 			<h3>Information</h3>
 			<table>

@@ -18,7 +18,7 @@
 	</div>
 	<nav>
 	<ul>
-		<li><a  href="./index.php">Input</a></li>
+		<li><a href="./index.php">Input</a></li>
 		<li><a href="./generate-file.php">View</a></li>
 		<li><a class="active" href="./help.php">Help</a></li>
 	</ul>
@@ -61,9 +61,13 @@
 		{
 			markdownHelp();
 		}
-		else
+		else if ($topic == null || $topic == '')
 		{
 			allHelp();
+		}
+		else
+		{
+			echo '<h2>The requested help page could not be found.</h2>';
 		}
 		
 		?>
