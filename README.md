@@ -17,8 +17,8 @@ A small webpage where our school's robotics team can add to the daily documentat
 	- Link on post-submission page to generate HTML
 	- Can print from there ✓
 	- Custom limits on headers
-		- # -> h3
-		- ## -> h4
+		- # → h3
+		- ## → h4
 		- Etc.
 - Look into PDF generation from HTML
 - JavaScript form validation ✓
